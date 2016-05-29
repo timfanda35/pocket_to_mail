@@ -21,8 +21,12 @@ Mail.defaults do
 end
 
 class Main
+  def initialize
+    @client = Pocket.client(:access_token => ENV['ACCESS_TOKEN'])
+  end
+
   def run
-    info = oldest_item
+    info = older_items
 
     content = ""
     info['list'].each do |key, item|
@@ -30,15 +34,30 @@ class Main
     end
 
     send_mail("Older pocket", content)
+
+    delete_older_items(info)
   end
 
-  def oldest_item
-    client = Pocket.client(:access_token => ENV['ACCESS_TOKEN'])
-    info = client.retrieve(
+  def older_items
+    info = @client.retrieve(
       :sort => :oldest,
       :detailType => :simple,
       :count => 5
     )
+  end
+
+  def delete_older_items(info)
+    actions = []
+    info['list'].each do |key, item|
+      actions << {
+        action: 'delete',
+        item_id: item['item_id'].to_i
+      }
+    end
+
+    ap actions
+
+    @client.modify(actions)
   end
 
   def send_mail(subject, content)
