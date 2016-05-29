@@ -1,6 +1,6 @@
 # Pocket to mail
 
-## Local Test
+## Local
 
 Copy `.env.sample` to `.env`, fill it:
 
