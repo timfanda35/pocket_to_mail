@@ -1,6 +1,9 @@
 require 'bundler/setup'
 Bundler.require
 require 'net/smtp'
+require "cgi"
+require "uri"
+require './ext/ext.rb'
 
 Dotenv.load
 
@@ -30,7 +33,8 @@ class Main
 
     content = ""
     info['list'].each do |key, item|
-      content << "<a href=\"#{item['given_url']}\">#{item['given_title']}</a><br /><br />"
+      url = remove_utm(item['resolved_url'])
+      content << "<a href=\"#{url}\">#{item['resolved_title']}</a><br /><br />"
     end
 
     send_mail("Older pocket", content)
@@ -75,6 +79,21 @@ class Main
         body content
       end
     end
+  end
+
+  def remove_utm(url)
+    uri = URI(url)
+    query_string = if uri.query
+      q = CGI.parse(uri.query)
+      q.delete "hmsr"
+      q.delete "utm_medium"
+      q.delete "utm_source"
+      query_string = "?" + q.to_query.gsub("%5B%5D", "")
+    else
+       ""
+    end
+
+    uri.scheme + "://" + uri.host + uri.path + query_string
   end
 end
 
