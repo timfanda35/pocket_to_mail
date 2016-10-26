@@ -84,7 +84,7 @@ class Main
   def remove_utm(url)
     uri = URI(url)
     query_string = if uri.query
-      q = CGI.parse(uri.query)
+      q = CGI.parse(URI.escape(uri.query))
       q.delete "hmsr"
       q.delete "utm_medium"
       q.delete "utm_source"
