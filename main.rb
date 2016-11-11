@@ -31,6 +31,8 @@ class Main
   def run
     info = older_items
 
+    return if info['list'].length == 0
+
     content = ""
     info['list'].each do |key, item|
       url = remove_utm(item['resolved_url'])
