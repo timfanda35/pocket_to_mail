@@ -1,30 +1,11 @@
-require 'bundler/setup'
-Bundler.require
 require 'net/smtp'
 require "cgi"
 require "uri"
 require_relative 'lib/pocket_to_mail.rb'
 
-Dotenv.load
-
-Pocket.configure do |config|
-  config.consumer_key = ENV['API_KEY']
-end
-
-options = { :address              => "smtp.gmail.com",
-            :port                 => 587,
-            :domain               => 'smtp.gmail.com',
-            :user_name            => ENV['MAIL_ADDRESS'],
-            :password             => ENV['MAIL_PASSWORD'],
-            :authentication       => 'plain',
-            :enable_starttls_auto => true  }
-
-Mail.defaults do
-  delivery_method :smtp, options
-end
-
 class Main
   def initialize
+    PocketToMail.init
     @client = Pocket.client(:access_token => ENV['ACCESS_TOKEN'])
   end
 
@@ -98,5 +79,3 @@ class Main
     uri.scheme + "://" + uri.host + uri.path + query_string
   end
 end
-
-ap Main.new.older_items
