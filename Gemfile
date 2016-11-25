@@ -6,6 +6,7 @@ gem 'dotenv'
 gem 'awesome_print'
 gem 'pocket-ruby'
 gem 'mail'
+gem 'addressable'
 
 group :test do
   gem "simplecov"
