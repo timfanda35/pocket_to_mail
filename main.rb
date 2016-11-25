@@ -6,13 +6,13 @@ require_relative 'lib/pocket_to_mail.rb'
 class Main
   def initialize
     PocketToMail.init
-    @client = Pocket.client(:access_token => ENV['ACCESS_TOKEN'])
+    @client = PocketToMail::PocketClient.new(ENV['API_KEY'], ENV['ACCESS_TOKEN'])
   end
 
   def run
-    info = older_items
+    info = @client.older_items
 
-    return if info['list'].length == 0
+    return "no pocket posts to mail" if info['list'].length == 0
 
     content = ""
     info['list'].each do |key, item|
@@ -22,29 +22,7 @@ class Main
 
     send_mail("Older pocket", content)
 
-    delete_older_items(info)
-  end
-
-  def older_items
-    info = @client.retrieve(
-      :sort => :oldest,
-      :detailType => :simple,
-      :count => 5
-    )
-  end
-
-  def delete_older_items(info)
-    actions = []
-    info['list'].each do |key, item|
-      actions << {
-        action: 'delete',
-        item_id: item['item_id'].to_i
-      }
-    end
-
-    ap actions
-
-    @client.modify(actions)
+    @client.delete_older_items(info)
   end
 
   def send_mail(subject, content)
