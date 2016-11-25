@@ -22,3 +22,5 @@ If your gmail account has set with two-factory, you should go to [](https://secu
 Go to [Heroku Dashboard](https://dashboard-preview.heroku.com/apps), in your heroku application setting page, config variables section, add variables with content of `.env`.
 
 Set [Heroku scheduler](https://devcenter.heroku.com/articles/scheduler).
+
+Set job command to `rake run`
