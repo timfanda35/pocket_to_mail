@@ -3,7 +3,7 @@ Bundler.require
 require 'net/smtp'
 require "cgi"
 require "uri"
-require './ext/ext.rb'
+require_relative 'lib/pocket_to_mail.rb'
 
 Dotenv.load
 
@@ -99,4 +99,4 @@ class Main
   end
 end
 
-ap Main.new.run
+ap Main.new.older_items
