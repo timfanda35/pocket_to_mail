@@ -16,7 +16,7 @@ class Main
 
     send_mail("Older pocket", content)
 
-    client.delete_older_items(info)
+    client.delete_older_items!(info)
 
     "done!"
   end

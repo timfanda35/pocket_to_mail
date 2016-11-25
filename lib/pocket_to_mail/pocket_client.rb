@@ -8,14 +8,14 @@ module PocketToMail
     end
 
     def older_items
-      info = @client.retrieve(
+      @client.retrieve(
         :sort => :oldest,
         :detailType => :simple,
         :count => 5
       )
     end
 
-    def delete_older_items(info)
+    def delete_older_items!(info)
       actions = []
       info['list'].each do |key, item|
         actions << {
@@ -23,8 +23,6 @@ module PocketToMail
           item_id: item['item_id'].to_i
         }
       end
-
-      ap "actions: #{actions}"
 
       @client.modify(actions)
     end

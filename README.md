@@ -1,5 +1,9 @@
 # Pocket to mail
 
+[![Build Status](https://travis-ci.org/timfanda35/pocket_to_mail.svg?branch=master)](https://travis-ci.org/timfanda35/pocket_to_mail)
+[![Code Climate](https://codeclimate.com/github/timfanda35/pocket_to_mail/badges/gpa.svg)](https://codeclimate.com/github/timfanda35/pocket_to_mail)
+[![Test Coverage](https://codeclimate.com/github/timfanda35/pocket_to_mail/badges/coverage.svg)](https://codeclimate.com/github/timfanda35/pocket_to_mail/coverage)
+
 ## Local
 
 Copy `.env.sample` to `.env`, fill it:
