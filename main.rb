@@ -1,4 +1,3 @@
-require 'net/smtp'
 require_relative 'lib/pocket_to_mail.rb'
 
 class Main
@@ -18,6 +17,8 @@ class Main
     send_mail("Older pocket", content)
 
     client.delete_older_items(info)
+
+    "done!"
   end
 
   def send_mail(subject, content)
