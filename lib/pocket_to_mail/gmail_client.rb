@@ -1,5 +1,3 @@
-require 'net/smtp'
-
 module PocketToMail
   class GmailClient
     def initialize(email, password)
@@ -23,6 +21,7 @@ module PocketToMail
         subject subject
 
         text_part do
+          content_type 'text/plain; charset=UTF-8'
           body content
         end
 
