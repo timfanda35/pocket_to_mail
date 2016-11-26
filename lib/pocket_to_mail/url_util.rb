@@ -6,11 +6,13 @@ module PocketToMail
       uri = Addressable::URI.parse(url)
 
       q = uri.query_values
-      q.delete "hmsr"
-      q.delete "utm_medium"
-      q.delete "utm_source"
+      if q
+        q.delete "hmsr"
+        q.delete "utm_medium"
+        q.delete "utm_source"
 
-      uri.query_values = q
+        uri.query_values = q
+      end
 
       uri.normalize.to_s
     end

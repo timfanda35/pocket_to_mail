@@ -1,6 +1,9 @@
 class UrlUtilTest < Minitest::Test
   def test_remove_utm
     base_url = "http://www.example.com/"
+
+    assert_equal(base_url, remove_utm(base_url))
+
     assert_equal(base_url, remove_utm("#{base_url}?hmsr=123"))
     assert_equal(base_url, remove_utm("#{base_url}?utm_medium=abc"))
     assert_equal(base_url, remove_utm("#{base_url}?utm_source=def"))
