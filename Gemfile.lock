@@ -33,7 +33,7 @@ GEM
       faraday_middleware (~> 0.9)
       hashie (>= 0.4.0)
       multi_json (~> 1.0, >= 1.0.3)
-    rake (11.3.0)
+    rake (12.3.3)
     ruby-progressbar (1.8.1)
     simplecov (0.12.0)
       docile (~> 1.1.0)
