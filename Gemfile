@@ -6,7 +6,7 @@ gem 'dotenv'
 gem 'awesome_print'
 gem 'pocket-ruby'
 gem 'mail'
-gem 'addressable'
+gem 'addressable', ">= 2.8.0"
 
 group :test do
   gem "simplecov"
