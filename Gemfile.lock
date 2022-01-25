@@ -45,6 +45,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   addressable (>= 2.8.0)
