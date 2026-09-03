@@ -8,6 +8,7 @@ GEM
     builder (3.2.2)
     codeclimate-test-reporter (1.0.3)
       simplecov
+    date (3.5.1)
     docile (1.1.5)
     dotenv (2.1.1)
     faraday (0.9.2)
@@ -16,11 +17,14 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     hashie (3.4.4)
     json (2.3.1)
-    mail (2.6.4)
-      mime-types (>= 1.16, < 4)
-    mime-types (3.0)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0221)
+    logger (1.7.0)
+    mail (2.9.1)
+      logger
+      mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
+    mini_mime (1.1.5)
     minitest (5.9.1)
     minitest-reporters (1.1.12)
       ansi
@@ -29,6 +33,15 @@ GEM
       ruby-progressbar
     multi_json (1.12.1)
     multipart-post (2.0.0)
+    net-imap (0.4.25)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.3.0)
+      timeout
+    net-smtp (0.5.1)
+      net-protocol
     pocket-ruby (0.0.6)
       faraday (>= 0.7)
       faraday_middleware (~> 0.9)
@@ -42,6 +55,7 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    timeout (0.6.1)
 
 PLATFORMS
   ruby
